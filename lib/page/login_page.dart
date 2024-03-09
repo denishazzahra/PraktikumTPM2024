@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Container(
-              constraints: const BoxConstraints(maxWidth: 500),
+              constraints: const BoxConstraints(maxWidth: 500, minHeight: 450),
               height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

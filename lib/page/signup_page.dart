@@ -25,7 +25,7 @@ class _SignupPageState extends State<SignupPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Container(
-              constraints: const BoxConstraints(maxWidth: 500),
+              constraints: const BoxConstraints(maxWidth: 500, minHeight: 500),
               height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
