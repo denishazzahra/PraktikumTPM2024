@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_teori/loginPage.dart';
+import 'page/login_page.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tugas Kelompok Mobile',
-      theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.amber,
-      ),
       home: const LoginPage(),
+      theme: ThemeData(fontFamily: 'Poppins'),
     );
   }
 }
