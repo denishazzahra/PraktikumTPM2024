@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
   bool isLoginSuccess = false;
   final box = GetStorage();
+  final checkLogin = GetStorage('checkLogin');
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -150,9 +151,9 @@ class _LoginPageState extends State<LoginPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return HomeScreen(
-                      username: originalUsername,
-                    );
+                    checkLogin.write('isLoggedIn', true);
+                    checkLogin.write('username', originalUsername);
+                    return const HomeScreen();
                   },
                 ),
               );

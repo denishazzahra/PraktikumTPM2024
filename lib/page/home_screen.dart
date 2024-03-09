@@ -1,3 +1,4 @@
+import 'package:get_storage/get_storage.dart';
 import 'calculator_page.dart';
 import 'even_odd_page.dart';
 import 'team_page.dart';
@@ -5,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String username;
-  const HomeScreen({super.key, required this.username});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GetStorage checkLogin = GetStorage('checkLogin');
+    final username = checkLogin.read('username');
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -42,7 +44,7 @@ class HomeScreen extends StatelessWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.only(top: 15, right: 15, bottom: 15),
-              child: _logoutButton(context),
+              child: _logoutButton(context, checkLogin),
             ),
           ],
         ),
@@ -270,7 +272,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _logoutButton(BuildContext context) {
+  Widget _logoutButton(BuildContext context, GetStorage checkLogin) {
     return IconButton(
       iconSize: 16,
       icon: const Icon(Icons.logout),
@@ -279,6 +281,8 @@ class HomeScreen extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
+              checkLogin.write('isLoggedIn', false);
+              checkLogin.write('username', '');
               return const LoginPage();
             },
           ),
