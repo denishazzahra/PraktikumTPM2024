@@ -29,15 +29,23 @@ class _EvenOddPageState extends State<EvenOddPage> {
   void updateTextField(String newText) {
     final currentValue = _controller.text;
     if (newText == '+/-') {
-      if (currentValue[0] == '-') {
-        _controller.text = currentValue.substring(1, currentValue.length);
-      } else {
-        _controller.text = '-$currentValue';
+      if (currentValue.isNotEmpty) {
+        if (currentValue[0] == '-') {
+          _controller.text = currentValue.substring(1, currentValue.length);
+        } else if (_controller.text != '0') {
+          _controller.text = '-$currentValue';
+        }
       }
     } else {
-      setState(() {
-        _controller.text = '$currentValue$newText';
-      });
+      if (_controller.text == '0') {
+        setState(() {
+          _controller.text = newText;
+        });
+      } else {
+        setState(() {
+          _controller.text = '$currentValue$newText';
+        });
+      }
     }
   }
 
@@ -46,6 +54,9 @@ class _EvenOddPageState extends State<EvenOddPage> {
       final currentValue = _controller.text;
       if (currentValue.isNotEmpty) {
         _controller.text = currentValue.substring(0, currentValue.length - 1);
+        if (_controller.text == '-') {
+          _controller.text = '';
+        }
       }
     });
   }

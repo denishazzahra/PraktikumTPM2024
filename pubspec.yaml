@@ -88,7 +88,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_native_splash:
-  color: "#ffffff" # Background color of the splash screen
+  color: "#fffbff" # Background color of the splash screen
   image: assets/images/logo.png # Path to your splash screen image
   android: true
   ios: true

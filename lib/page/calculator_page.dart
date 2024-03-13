@@ -29,11 +29,17 @@ class _CalculatorPageState extends State<CalculatorPage> {
   void updateTextField(String newText) {
     final currentValue = _controller.text;
     if (newText == '+/-') {
-      if (currentValue.isEmpty || currentValue[0] != '-') {
-        _controller.text = '-$currentValue';
-      } else {
-        _controller.text = currentValue.substring(1, currentValue.length);
+      if (currentValue.isNotEmpty) {
+        if (currentValue[0] == '-') {
+          _controller.text = currentValue.substring(1, currentValue.length);
+        } else if (_controller.text != '0') {
+          _controller.text = '-$currentValue';
+        }
       }
+    } else if (currentValue == '0' && newText != '.') {
+      _controller.text = newText;
+    } else if (currentValue == '-0' && newText != '.') {
+      _controller.text = '-$newText';
     } else {
       if (!(newText == '.' &&
           (currentValue.contains('.') || currentValue.isEmpty))) {
@@ -49,7 +55,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   void updateList(BuildContext context, String sym) {
-    if (num.isEmpty && _controller.text.isEmpty || _controller.text == '-') {
+    if (num.isEmpty && _controller.text.isEmpty ||
+        _controller.text[_controller.text.length - 1] == '.' ||
+        _controller.text == '-0') {
       const SnackBar snackbar =
           SnackBar(content: Text('Invalid input format!'));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -76,6 +84,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
       final currentValue = _controller.text;
       if (currentValue.isNotEmpty) {
         _controller.text = currentValue.substring(0, currentValue.length - 1);
+        if (_controller.text == '-') {
+          _controller.text = '';
+        }
       } else if (currentValue.isEmpty && num.isNotEmpty) {
         setState(() {
           equation.removeLast();
@@ -99,7 +110,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   void calculationResult(BuildContext context) {
-    if (_controller.text.isEmpty) {
+    if (_controller.text.isEmpty ||
+        _controller.text[_controller.text.length - 1] == '.' ||
+        _controller.text == '-0') {
       const SnackBar snackbar =
           SnackBar(content: Text('Invalid input format!'));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
