@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numwiz/page/home_screen.dart';
-import 'page/login_page.dart';
+import 'pages/home_screen.dart';
+import 'pages/login_page.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'detail_page.dart';
 import 'login_page.dart';
 import '../data/tourism_place.dart';
 
@@ -69,8 +69,14 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Uri url = Uri.parse(tourismPlaceList[index].imageUrls[0]);
-              _launchUrl(url);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetailPage(index: index);
+                  },
+                ),
+              );
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 15),
@@ -158,8 +164,14 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Uri url = Uri.parse(tourismPlaceList[index].imageUrls[0]);
-              _launchUrl(url);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetailPage(index: index);
+                  },
+                ),
+              );
             },
             child: Container(
               decoration: BoxDecoration(
@@ -255,11 +267,5 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _launchUrl(Uri url) async {
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
   }
 }
