@@ -1,6 +1,6 @@
 {
-    "name": "travel_app",
-    "short_name": "travel_app",
+    "name": "NumWiz",
+    "short_name": "NumWiz",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#fffbff",
