@@ -26,11 +26,12 @@ class _LoginPageState extends State<LoginPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Container(
-              constraints: const BoxConstraints(maxWidth: 500, minHeight: 450),
+              constraints: const BoxConstraints(maxWidth: 500, minHeight: 700),
               height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset('assets/images/transport.png', width: 300),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.all(15),
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 28,
+                            color: Color(0xFF7366FF),
                           ),
                         ),
                         Text(
@@ -160,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black,
+            backgroundColor: const Color(0xFF7366FF),
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -200,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
             "Sign Up",
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              color: Color(0xFF7366FF),
             ),
           )
         ],
